@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap and external css stylesheet-->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!--font awesome cdn-->    
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    
+    <!--charts.js cdn-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
+
+
+    <title>Graph Visualisation</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <img id="logo" src="images/wyblo.png">
+            <ul>
+                <li>
+                    <a class="btn btn-light"  id="hover" href="#">Overview</a>
+                </li>
+                
+                <li>
+                    <a class="btn btn-light" href="#">Dashboards</a>
+                </li>
+                
+                <li>
+                    <a class="btn btn-light" href="#">Courses</a>
+                </li>
+                
+                <li>
+                    <a class="btn btn-light" href="#">CRM</a>
+                </li>
+                
+                <li>
+                    <a class="btn btn-light" href="#">Survey</a>
+                </li>
+                
+                <li>
+                    <a class="btn btn-light" href="#">Certificates</a>
+                </li>
+                
+                <li>
+                    <a class="btn btn-light" href="#">Content management</a>
+                </li>
+                                               
+                <li>
+                        <a class="btn btn-light" href="#">Settings</a>
+                </li>
+                
+                <li>
+                       <a id="logout" class="btn btn-light" href="#">Logout</a>
+                </li>
+                
+            </li>
+            </ul> 
+            <div class="social_media">
+              
+          </div>
+        </div>
+       
+        <div class="main_content" >
+            <div class="header">
+                <button type="button" class="add-course-btn" id="course-btn"><i class="fal fa-plus-circle"></i>&nbsp Add course</button>
+                <h2>Overview</h2>
+            </div>  
+            
+            <div class="info">
+              <div class="averages_tab">
+                  <h2 id="average_heading">12</h2>
+                  <p>Coming Sessions</p>
+                </div>
+              
+                <div class="averages_tab">
+                  <h2 class="average_heading">80</h2>
+                  <p>N &#176; Registrants</p>
+                </div>
+              
+                <div class="averages_tab">
+                  <h2 class="average_heading">65</h2>
+                  <p>N &#176 Attendees</p>
+                </div>
+              
+                <div class="averages_tab">
+                  <h2 class="average_heading">15</h2>
+                  <p>N &#176 Organizations</p>
+                </div>
+              
+                <div class="averages_tab">
+                  <h2 class="average_heading">8</h2>
+                  <p id="paragraph">N &#176 Trainers</p>
+                </div>                
+          </div>
+            
+          <div class="visuals">
+             <div class="charts">
+                <h6>Overall Satisfaction by Month</h6>
+                 <canvas id="line_chart"> 
+                    
+                 </canvas> 
+                </div>
+              
+                <div class="charts">
+                    <h6>N &#176 Attendees and Registrant by Course</h6>
+                    <canvas id="secondchart">
+                        
+                    </canvas> 
+                   </div>
+
+                   <div class="charts">
+                    <h6>N &#176 Attendees and Registrant by Session</h6>
+                    <canvas id="thirdchart"> 
+                       
+                    </canvas> 
+                   </div>
+        
+            </div>
+        </br>
+
+            <div class="comments_section">
+                
+                <div class="user_section">
+                 <img src="images/heatmap.jpg"><img id="heatmap" src="images/comments.png">  
+                 
+                 </div>
+
+                
+            </div>
+        
+            
+        </div>
+    </div>
+
+    
+
+    <script>
+        const line_chart = document.getElementById('line_chart').getContext('2d'); 
+        const linechart = new Chart(line_chart, {
+            type: 'line',
+            data:{
+                labels:['Jan','Feb','Mar','Apri','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                datasets:[{
+                   label:'Overall Satisfaction by Month',
+                   data:[4,42,39,4,37,63,36,50,70,63,56,100] ,
+                   borderColor: 'blue',
+                }]
+            }
+        });
+
+       
+       
+
+        const secondchart = document.getElementById('secondchart').getContext('2d'); 
+        const second_chart = new Chart(secondchart, {
+            type: 'bar',
+            data:{
+           label: 'N &#176 Attendees and Registrant by Course',
+           labels: ["Negotiation","Persuasion","Power","Time management"],
+           
+        datasets: [{
+            label:'Attendees',
+            backgroundColor: "pink",
+            borderColor: "red",
+            borderWidth: 1,
+            data: [26,15,53,68]
+            },
+            {
+            
+            label:'Registrants',
+            backgroundColor: "lightblue",
+            borderColor: "blue",
+            borderWidth: 1,
+            data: [47,20,75,70]
+            },
+            
+            
+            
+        ]
+            }
+        });
+
+
+        const thirdchart = document.getElementById('thirdchart').getContext('2d'); 
+        const third_chart = new Chart(thirdchart, {
+            type: 'bar',
+            data:{
+           label: 'N &#176 Attendees and Registrant by Session',
+           labels: ["Session 1","Session 2","Session 3","Session 4","Session 5","Session 6"],
+           borderRadius: 2,
+           
+        datasets: [{
+            label:'Attendees',
+            backgroundColor: "orange",
+            borderColor: "lightorange",
+            borderWidth: 1,
+            data: [10,43,26,35,5,50]
+            },
+            {
+            
+            label:'Registrants',
+            backgroundColor: "green",
+            borderColor: "lightgreen",
+            borderWidth: 1,
+            data: [46,45,46,50,15,57]
+            },
+            
+            
+            
+        ]
+            }
+        });
+
+        
+
+    </script>
+
+
+
+ </body>
+ 
+ 
+ </html>
